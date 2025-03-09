@@ -1,8 +1,6 @@
 # fusion2urdf
 
-I forked this repo from [syuntoku14](https://github.com/syuntoku14/fusion2urdf) who did a super work. During the usage of the original package some restriction hit me quite hard. I decided to add some new features to the package like handling nested components and colors.
-
-Hope you enjoy the new features!
+I forked this repo from [SpaceMaster85](https://github.com/SpaceMaster85/fusion2urdf), it has been updated to work with the latest version of python shipping with Fusion, using the change suggested by [smtbhd32](https://github.com/syuntoku14/fusion2urdf/pull/91). It also has some quality of life improvements for use with the [Qronk](https://github.com/OxRAMSociety/Qronk) project.
 
 This repo only supports Gazebo, if you are using pybullet, see: https://github.com/yanshil/Fusion2PyBullet.
 

@@ -44,9 +44,18 @@ def run(context):
         root = design.rootComponent  # root component 
         components = design.allComponents
 
-        # set the names        
-        robot_name = root.name.split()[0].lower()
-        package_name = robot_name + '_description'
+        # set the names
+        robot_name = "default"      
+        robot_name = ui.inputBox('Name of Robot', 
+                                'Name the robot', robot_name)
+        package_name = "%s_description"%robot_name[0]  
+        package_name = ui.inputBox('Name of ROS Package', 
+                                'Name the ROS Package', package_name)
+        package_name = package_name[0]
+        robot_name = robot_name[0]
+        robot_name.lower()
+        package_name.lower()
+        
         save_dir = utils.file_dialog(ui)
         if save_dir == False:
             ui.messageBox('Fusion2URDF was canceled', title)
