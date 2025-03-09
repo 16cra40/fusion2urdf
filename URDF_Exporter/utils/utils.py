@@ -14,7 +14,7 @@ import os.path
 import re
 from xml.etree import ElementTree
 from xml.dom import minidom
-from distutils.dir_util import copy_tree
+from shutil import copytree
 import fileinput
 import sys
 
@@ -167,14 +167,20 @@ def prettify(elem):
 
 def copy_package(save_dir, package_dir):
     try:
-        os.mkdir(save_dir + '/launch')
-    except:
-        pass
-    try:
-        os.mkdir(save_dir + '/urdf')
-    except:
-        pass
-    copy_tree(package_dir, save_dir)
+        # Check if the target directory exists, if not, create it
+        if not os.path.exists(save_dir + '/launch'):
+            os.mkdir(save_dir + '/launch')
+        if not os.path.exists(save_dir + '/urdf'):
+            os.mkdir(save_dir + '/urdf')
+
+        # Check if the package directory exists and copy it
+        if os.path.exists(package_dir):
+            copytree(package_dir, save_dir, dirs_exist_ok=True)  # dirs_exist_ok=True allows overwriting
+        else:
+            print(f"Package directory '{package_dir}' does not exist.")
+
+    except Exception as e:
+        print(f"Error copying package: {e}")
 
 
 def update_cmakelists(save_dir, package_name):
