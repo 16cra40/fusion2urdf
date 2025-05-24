@@ -23,7 +23,7 @@ from .core import Link, Joint, Write
 
 def run(context):
     ui = None
-    success_msg = 'Successfully create URDF file'
+    success_msg = 'Successfully created URDF file'
     msg = success_msg
 
     try:
