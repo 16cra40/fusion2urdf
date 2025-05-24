@@ -49,9 +49,6 @@ def run(context):
         robot_name = ui.inputBox('Name of Robot', 
                                 'Name the robot', robot_name)
         package_name = "%s_description"%robot_name[0]  
-        package_name = ui.inputBox('Name of ROS Package', 
-                                'Name the ROS Package', package_name)
-        package_name = package_name[0]
         robot_name = robot_name[0]
         robot_name.lower()
         package_name.lower()

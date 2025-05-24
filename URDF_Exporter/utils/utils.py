@@ -172,7 +172,6 @@ def copy_package(save_dir, package_dir):
             os.mkdir(save_dir + '/launch')
         if not os.path.exists(save_dir + '/urdf'):
             os.mkdir(save_dir + '/urdf')
-
         # Check if the package directory exists and copy it
         if os.path.exists(package_dir):
             copytree(package_dir, save_dir, dirs_exist_ok=True)  # dirs_exist_ok=True allows overwriting
@@ -193,13 +192,16 @@ def update_cmakelists(save_dir, package_name):
             sys.stdout.write(line)
 
 def update_ros2_launchfile(save_dir, package_name):
-    file_name = save_dir + '/launch/robot_description.launch.py'
+    launch_files = ['/launch/robot_description.launch.py', '/launch/display.launch.xml']
 
-    for line in fileinput.input(file_name, inplace=True):
-        if 'fusion2urdf' in line:
-            sys.stdout.write(line.replace('fusion2urdf', package_name))
-        else:
-            sys.stdout.write(line)
+    for file_name in launch_files:
+        file_name = save_dir + file_name
+
+        for line in fileinput.input(file_name, inplace=True):
+            if 'fusion2urdf' in line:
+                sys.stdout.write(line.replace('fusion2urdf', package_name))
+            else:
+                sys.stdout.write(line)
 
 def update_package_xml(save_dir, package_name):
     file_name = save_dir + '/package.xml'
